@@ -40,6 +40,10 @@ _____________________________________________
 ```bash
 docker-compose up -d --build
 
+ssh -p 2222 omburande@127.0.0.1
+sudo ip route del default via 192.168.1.1 dev enp0s3
+ping -c 3 google.com
+
 Access dashboard at:
 http://localhost:8000/dashboard
 http://localhost:8000/simulate
