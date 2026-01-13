@@ -1,0 +1,30 @@
+services:
+  cyber_api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cyberguard-cyber_api-1
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app/app
+      - ./dashboard:/app/dashboard
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: postgres:15
+    container_name: cyberguard-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: cyberdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - cyberdata:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  cyberdata:
